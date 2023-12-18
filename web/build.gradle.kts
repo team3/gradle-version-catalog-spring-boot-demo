@@ -3,7 +3,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     alias(libsSpringBoot320.plugins.spring.boot)
     alias(libsSpringBoot320.plugins.spring.dependency.management)
-
     kotlin("jvm") version "1.9.20"
     kotlin("plugin.spring") version "1.9.20"
 }
@@ -26,14 +25,13 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    compileOnly("org.projectlombok:lombok")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
-    annotationProcessor("org.projectlombok:lombok")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation(libsSpring.bundles.spring)
+    implementation(libsKotlin.kotlin.reflect)
+    implementation(libsKotlin.jackson.module.kotlin)
+    compileOnly(libsCommon.lombok)
+    developmentOnly(libsSpring.spring.boot.devtools)
+    annotationProcessor(libsCommon.lombok)
+    testImplementation(libsSpring.spring.boot.starter.test)
 }
 
 tasks.withType<KotlinCompile> {
